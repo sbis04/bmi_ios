@@ -26,11 +26,11 @@ workflows:
                 xcodebuild build-for-testing \
                 -project BMI\ Calculator.xcodeproj \
                 -scheme BMI\ Calculator \
-                -destination 'platform=iOS Simulator'
+                -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4'
             - |
                 # build ipa
                 xcode-project use-profiles
-                xcode-project build-ipa --project "<your_xcode_project>.xcodeproj" --scheme "<your_scheme>"
+                xcode-project build-ipa --project "BMI Calculator.xcodeproj" --scheme "BMI Calculator"
         artifacts:
             - build/ios/ipa/*.ipa
             - /tmp/xcodebuild_logs/*.log
