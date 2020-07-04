@@ -21,12 +21,12 @@ workflows:
                 # set up signing certificate
                 echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
                 keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
-            - |
-                # run tests
-                xcodebuild build-for-testing \
-                -project BMI\ Calculator.xcodeproj \
-                -scheme BMI\ Calculator \
-                -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4'
+#             - |
+#                 # run tests
+#                 xcodebuild build-for-testing \
+#                 -project BMI\ Calculator.xcodeproj \
+#                 -scheme BMI\ Calculator \
+#                 -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4'
             - |
                 # build ipa
                 xcode-project use-profiles
