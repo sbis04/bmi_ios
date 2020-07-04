@@ -26,7 +26,7 @@ workflows:
                 xcodebuild build-for-testing \
                 -project BMI\ Calculator.xcodeproj \
                 -scheme BMI\ Calculator \
-                -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=13.5'
+                -destination 'platform=iOS Simulator'
             - |
                 # build ipa
                 xcode-project use-profiles
