@@ -10,6 +10,7 @@ workflows:
             cocoapods: default
         scripts:
             - open -a Simulator
+            - sleep 120
             - keychain initialize
             - |
                 # set up provisioning profiles
@@ -27,6 +28,7 @@ workflows:
                 xcodebuild \
                 -project BMI\ Calculator.xcodeproj \
                 -scheme BMI\ Calculator \
+                -sdk iphonesimulator \
                 clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 #                 -destination 'platform=iOS Simulator,name=apple_ios_simulator'
             - |
