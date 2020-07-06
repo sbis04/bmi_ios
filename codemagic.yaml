@@ -24,12 +24,6 @@ workflows:
                 echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
                 keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
             - |
-                # dest
-                xcodebuild test \
-                -destination 'platform=iOS Simulator' \
-                -project BMI\ Calculator.xcodeproj \
-                -scheme BMI\ Calculator
-            - |
                 # run tests
                 xcodebuild \
                 -workspace MyAwesomeApp.xcworkspace \
