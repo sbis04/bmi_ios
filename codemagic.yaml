@@ -1,5 +1,14 @@
 workflows:
-    ios-project:
+    ios-project-debug: # workflow ID
+        name: iOS project # workflow name
+        environment:
+            xcode: latest
+            cocoapods: default
+        scripts:
+            - xcodebuild build -project "BMI Calculator" -scheme "BMI Calculator" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+        artifacts:
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+    ios-project-release:
         name: Native iOS
         environment:
             vars:
