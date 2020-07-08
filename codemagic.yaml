@@ -8,8 +8,8 @@ workflows:
       - |
         # run tests
         xcodebuild \
-        -project BMI\ Calculator.xcodeproj \
-        -scheme BMI\ Calculator \
+        -project "BMI Calculator.xcodeproj" \
+        -scheme "BMI Calculator" \
         -sdk iphonesimulator \
         -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4' \
         clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
@@ -47,8 +47,8 @@ workflows:
       - |
         # run tests
         xcodebuild \
-        -project BMI\ Calculator.xcodeproj \
-        -scheme BMI\ Calculator \
+        -project "BMI Calculator.xcodeproj" \
+        -scheme "BMI Calculator" \
         -sdk iphonesimulator \
         -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4' \
         clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
