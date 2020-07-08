@@ -34,18 +34,18 @@ workflows:
                 keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
             - |
                 # run tests
-                xcodebuild \
-                -project BMI\ Calculator.xcodeproj \
-                -scheme BMI\ Calculator \
-                -sdk iphonesimulator \
-                -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.1' \
-                test | xcpretty
 #                 xcodebuild \
 #                 -project BMI\ Calculator.xcodeproj \
 #                 -scheme BMI\ Calculator \
 #                 -sdk iphonesimulator \
-#                 clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-#                 -destination 'platform=iOS Simulator,name=apple_ios_simulator'
+#                 -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.1' \
+#                 test | xcpretty
+                xcodebuild \
+                -project BMI\ Calculator.xcodeproj \
+                -scheme BMI\ Calculator \
+                -sdk iphonesimulator \
+                -destination 'platform=iOS Simulator,name=apple_ios_simulator' \
+                clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
             - |
                 # build ipa
                 xcode-project use-profiles
