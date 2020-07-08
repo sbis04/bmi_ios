@@ -20,7 +20,8 @@ workflows:
         scripts:
 #             - open -a Simulator
 #             - sleep 120
-            - keychain initialize
+            - |
+                keychain initialize
             - |
                 # set up provisioning profiles
                 PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
