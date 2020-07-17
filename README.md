@@ -10,6 +10,84 @@ This is a simple **BMI Calculator** app to demonstrate the use of `codemagic.yam
   <img width="250" src="https://github.com/sbis04/bmi_ios/raw/master/screenshots/bmi_result_screen.png" alt="Result Screen"/>
 </p>
 
+## Codemagic YAML Template
+
+```yaml
+# You can get more information regarding the YAML file here:
+# https://docs.codemagic.io/building/yaml
+
+# Workflow setup for building Native iOS project
+workflows:
+  # The following workflow is for generating a debug build (.app)
+  ios-project-debug: # workflow ID
+    name: Native iOS # workflow name
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - |
+        # run tests
+        xcodebuild \
+        -project "<your_xcode_project_name>.xcodeproj" \
+        -scheme "<your_scheme>" \
+        -sdk iphonesimulator \
+        -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4' \
+        clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - |
+        # build .app
+        xcodebuild build -project "<your_xcode_project_name>.xcodeproj" -scheme "<your_scheme>" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+    artifacts:
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+    publishing:
+      email:
+        recipients:
+          - name@example.com # enter your email id here
+
+  # The following workflow is for generating a release build (.ipa)
+  ios-project-release: # workflow ID
+    name: Native iOS # workflow name
+    environment:
+      vars:
+        CM_CERTIFICATE: Encrypted(...) # enter the encrypted version of your certificate
+        CM_CERTIFICATE_PASSWORD: Encrypted(...) # enter the encrypted version of your certificate password
+        CM_PROVISIONING_PROFILE: Encrypted(...) # enter the encrypted version of your provisioning profile
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - keychain initialize
+      - |
+        # set up provisioning profiles
+        PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+        mkdir -p "$PROFILES_HOME"
+        PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
+        echo ${CM_PROVISIONING_PROFILE} | base64 --decode > $PROFILE_PATH
+        echo "Saved provisioning profile $PROFILE_PATH"
+      - |
+        # set up signing certificate
+        echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+        keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
+      - |
+        # run tests
+        xcodebuild \
+        -project "<your_xcode_project_name>.xcodeproj" \
+        -scheme "<your_scheme>" \
+        -sdk iphonesimulator \
+        -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4' \
+        clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - |
+        # build ipa
+        xcode-project use-profiles
+        xcode-project build-ipa --project "<your_xcode_project_name>.xcodeproj" --scheme "<your_scheme>"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      email:
+        recipients:
+          - name@example.com # enter your email id here
+
+```
+
 ## License
 
 Copyright (c) 2020 Souvik Biswas
