@@ -6,6 +6,7 @@ This is a simple **BMI Calculator** app to demonstrate the use of `codemagic.yam
 
 <p align="center">
   <img width="250" src="https://github.com/sbis04/bmi_ios/raw/master/screenshots/bmi_calculate_screen.png" alt="Calculation Screen"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="250" src="https://github.com/sbis04/bmi_ios/raw/master/screenshots/bmi_result_screen.png" alt="Result Screen"/>
 </p>
 
