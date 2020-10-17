@@ -79,7 +79,7 @@ workflows:
         unzip $FCI_BUILD_DIR/sonar-scanner.zip
         mv sonar-scanner-* sonar-scanner
         export PATH=$PATH:$FCI_BUILD_DIR/sonar-scanner/bin
-        sonar-scanner -h
+        sonar-scanner -v
       - |
         # generate test coverage result
         xcodebuild \
