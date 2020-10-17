@@ -74,14 +74,11 @@ workflows:
       cocoapods: default
     scripts:
       - |
-        sleep 2000
-      - |
         # download and install sonarqube
         wget -O $FCI_BUILD_DIR/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
         unzip $FCI_BUILD_DIR/sonar-scanner.zip
         mv sonar-scanner-* sonar-scanner
-      - | 
-        # check if sonar working
+        export PATH=$PATH:$FCI_BUILD_DIR/sonar-scanner/bin
         sonar-scanner -h
       - |
         # generate test coverage result
