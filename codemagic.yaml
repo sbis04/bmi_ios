@@ -88,9 +88,9 @@ workflows:
         bash xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xcresult/ > sonarqube-generic-coverage.xml
       - |
         # download and install sonarqube
-        wget -O $FCI_BUILD/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
-        unzip sonar-scanner.zip -d $FCI_BUILD_DIR/sonar-scanner
-        export SONAR_PATH=$FCI_BUILD_DIR/sonar-scanner/*
+        wget -O $FCI_BUILD_DIR/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
+        unzip $FCI_BUILD_DIR/sonar-scanner.zip -d $FCI_BUILD_DIR/sonar-scanner
+        export SONAR_PATH=$FCI_BUILD_DIR/sonar-scanner/**
         export PATH=$PATH:$SONAR_PATH/bin
       - |
         # sonarqube analysis
