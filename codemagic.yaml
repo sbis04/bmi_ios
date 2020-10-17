@@ -84,7 +84,7 @@ workflows:
         -project "BMI Calculator.xcodeproj" \
         -scheme "BMI Calculator" \
         -sdk iphonesimulator \
-        -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4' \
+        -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.0' \
         -derivedDataPath Build/ \
         -enableCodeCoverage YES \
         clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
@@ -94,7 +94,6 @@ workflows:
       - |
         # sonarqube analysis
         export PATH=$PATH:$FCI_BUILD_DIR/sonar-scanner/bin
-        sonar-scanner -v
         sonar-scanner \
         -Dsonar.projectKey=$SONAR_PROJECT_KEY \
         -Dsonar.organization=$SONAR_ORG_KEY \
