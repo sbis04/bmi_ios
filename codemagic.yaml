@@ -78,8 +78,6 @@ workflows:
         wget -O $FCI_BUILD_DIR/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
         unzip $FCI_BUILD_DIR/sonar-scanner.zip
         mv sonar-scanner-* sonar-scanner
-        export PATH=$PATH:$FCI_BUILD_DIR/sonar-scanner/bin
-        sonar-scanner -v
       - |
         # generate test coverage result
         xcodebuild \
@@ -95,6 +93,8 @@ workflows:
         bash xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xcresult/ > sonarqube-generic-coverage.xml
       - |
         # sonarqube analysis
+        export PATH=$PATH:$FCI_BUILD_DIR/sonar-scanner/bin
+        sonar-scanner -v
         sonar-scanner \
         -Dsonar.projectKey=$SONAR_PROJECT_KEY \
         -Dsonar.organization=$SONAR_ORG_KEY \
