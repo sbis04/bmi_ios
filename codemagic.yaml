@@ -85,7 +85,7 @@ workflows:
         clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - |
         # convert coverage report to sonarqube format
-        bash xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xcresult/*_Test/*.xccovarchive/ > sonarqube-generic-coverage.xml
+        bash xccov-to-sonarqube-generic.sh Build/Logs/Test/*.xcresult/ > sonarqube-generic-coverage.xml
       - |
         # download and install sonarqube
         wget -0 $FCI_BUILD/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-macosx.zip
