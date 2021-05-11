@@ -6,7 +6,7 @@ workflows:
       cocoapods: default
     scripts:
       - name: Run tests
-        scripts: |
+        script: |
           xcodebuild \
           -project "BMI Calculator.xcodeproj" \
           -scheme "BMI Calculator" \
@@ -14,7 +14,7 @@ workflows:
           -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1' \
           clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - name: Build debug app
-        scripts: |
+        script: |
           xcodebuild build -project "BMI Calculator.xcodeproj" \
           -scheme "BMI Calculator" \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
