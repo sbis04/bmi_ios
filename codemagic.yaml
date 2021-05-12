@@ -41,7 +41,7 @@ workflows:
     scripts:
       - name: Initialize keychain
         script: keychain initialize
-      - name: set up provisioning profiles
+      - name: Set up provisioning profiles
         script: |
           PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
           mkdir -p "$PROFILES_HOME"
