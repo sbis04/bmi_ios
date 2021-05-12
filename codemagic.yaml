@@ -49,14 +49,14 @@ workflows:
         # set up signing certificate
         echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
         keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
-      - |
-        # run tests
-        xcodebuild \
-        -project "BMI Calculator.xcodeproj" \
-        -scheme "BMI Calculator" \
-        -sdk iphonesimulator \
-        -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1' \
-        clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      # - |
+      #   # run tests
+      #   xcodebuild \
+      #   -project "BMI Calculator.xcodeproj" \
+      #   -scheme "BMI Calculator" \
+      #   -sdk iphonesimulator \
+      #   -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1' \
+      #   clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - |
         # build ipa
         xcode-project use-profiles
