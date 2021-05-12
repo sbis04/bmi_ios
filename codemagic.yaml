@@ -58,10 +58,11 @@ workflows:
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1' \
           clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-      - |
-        # build ipa
-        xcode-project use-profiles
-        xcode-project build-ipa --project "BMI Calculator.xcodeproj" --scheme "BMI Calculator"
+      - name: Build ipa
+        script: |
+          xcodebuild build -project "$XCODE_PROJECT" \
+          -scheme "$XCODE_SCHEME" \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
