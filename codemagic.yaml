@@ -55,7 +55,7 @@ workflows:
         -project "BMI Calculator.xcodeproj" \
         -scheme "BMI Calculator" \
         -sdk iphonesimulator \
-        -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4' \
+        -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1' \
         clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - |
         # build ipa
